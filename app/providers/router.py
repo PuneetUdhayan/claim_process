@@ -1,7 +1,7 @@
 from typing import List
 
 from sqlalchemy.orm import Session
-# from fastapi_limiter.depends import RateLimiter
+from fastapi_limiter.depends import RateLimiter
 from fastapi import APIRouter, Depends, status, HTTPException
 
 from app.database import get_db
@@ -14,8 +14,7 @@ router = APIRouter(
 )
 
 
-# @router.get("/top-ten", dependencies=[Depends(RateLimiter(times=10, seconds=60))])
-@router.get("/top-ten")
+@router.get("/top-ten", dependencies=[Depends(RateLimiter(times=10, seconds=60))])
 def top_ten_providers(db: Session = Depends(get_db)):
     try:
         data = controller.top_ten_fee_generating_providers(db=db)
