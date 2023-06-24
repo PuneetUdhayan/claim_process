@@ -16,6 +16,17 @@ router = APIRouter(
 
 @router.get("/top-ten", dependencies=[Depends(RateLimiter(times=10, seconds=60))])
 def top_ten_providers(db: Session = Depends(get_db)):
+    """Returns top 10 providers by net fees
+
+    Args:
+        db (Session, optional): database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: Thrown when an unforeseen error occurs
+
+    Returns:
+        StandardResponse
+    """
     try:
         data = controller.top_ten_fee_generating_providers(db=db)
         return StandardResponse(status=True, data=data)

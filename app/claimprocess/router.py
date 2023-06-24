@@ -18,6 +18,18 @@ router = APIRouter(
 
 @router.post("")
 def process_claim(claim_payload: ClaimPayload, db: Session = Depends(get_db)):
+    """Endpoint to process claims.
+
+    Args:
+        claim_payload (ClaimPayload): Details of the claim
+        db (Session, optional): Database session. Defaults to Depends(get_db).
+
+    Raises:
+        HTTPException: Thrown when an unforeseen error occurs
+
+    Returns:
+        _type_: _description_
+    """
     try:
         claim_details = db_session_handler(
             claim_process, {"claim_payload": claim_payload, "db": db}, db=db
