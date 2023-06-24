@@ -1,6 +1,8 @@
 import uuid
 
-from sqlalchemy import Column, Integer, BigInteger, String, Index, UUI, DateTime
+from sqlalchemy import Column, Integer, BigInteger, String, Index, UUI, DateTime, Float
+
+from . import Base
 
 
 class Claim(Base):
@@ -17,11 +19,11 @@ class Claim(Base):
         String(10)
     )  # Provided in case the buisness expands to multiple countries.
     # An assumption has been made that all amounts mentioned in a single claim will be of the same currency
-    provider_fee = Column(Integer)
-    allowed_fee = Column(Integer)
-    member_coinsurance = Column(Integer)
-    member_copay = Column(Integer)
-    net_fees = Column(Integer)
+    provider_fee = Column(Float)
+    allowed_fee = Column(Float)
+    member_coinsurance = Column(Float)
+    member_copay = Column(Float)
+    net_fees = Column(Float)
 
 
 class AgregateProviderFees(Base):
@@ -35,3 +37,5 @@ class AgregateProviderFees(Base):
 aggregate_net_fees_index = Index(
     "aggregate_net_fees_index", AgregateProviderFees.aggregate_net_fees.desc
 )
+
+provider_npi_index = Index("provider_npi_index", AgregateProviderFees.provider_npi)
