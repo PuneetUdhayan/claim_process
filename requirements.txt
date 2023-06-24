@@ -4,3 +4,4 @@ SQLAlchemy==2.0.17
 pytest==7.4.0
 python-dotenv==1.0.0
 price-parser==0.3.4
+pytest-mock==3.11.1

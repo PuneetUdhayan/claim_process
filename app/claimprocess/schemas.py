@@ -73,3 +73,23 @@ class ClaimPayload(BaseModel):
     @validator("member_copay", pre=True)
     def validate_member_copay(cls, value, values):
         return get_currency_and_amount(amount=value, currency=values["currency"])
+
+
+class ClaimDeatails(BaseModel):
+    claim_id: str
+    service_date: datetime
+    submitted_procedure: constr(regex=r"^D.*$")
+    quadrant: Optional[str]
+    plan_group_number: str
+    subscriber_number: int
+    provider_npi: conint(strict=True)
+    currency: str
+    provider_fees: float
+    allowed_fees: float
+    member_coinsurance: float
+    member_copay: float
+    net_fees:float
+
+    @validator("claim_id", pre=True)
+    def validate_member_copay(cls, value):
+        return str(value)

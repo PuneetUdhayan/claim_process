@@ -4,7 +4,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 
 
-class StandarResponse(BaseModel):
+class StandardResponse(BaseModel):
     time: datetime = Field(default_factory=datetime.utcnow)
     status: bool = True
     data: Any
