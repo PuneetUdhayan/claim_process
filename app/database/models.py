@@ -1,3 +1,4 @@
+"""Contains database models"""
 from sqlalchemy import Column, BigInteger, String, Index, DateTime, Float
 
 from . import Base
@@ -30,9 +31,9 @@ class AgregateProviderFees(Base):
     provider_npi = Column(BigInteger, primary_key=True,)
     aggregate_net_fees = Column(Float)
 
-
+# Index to optimize order by statements
 aggregate_net_fees_index = Index(
     "aggregate_net_fees_index", AgregateProviderFees.aggregate_net_fees.desc()
 )
-
+# Index to optimize search of provider npis
 provider_npi_index = Index("provider_npi_index", AgregateProviderFees.provider_npi)

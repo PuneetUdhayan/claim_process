@@ -18,7 +18,7 @@ def test_process_filed():
 def test_claim_payload_column_parse():
     claim_payload = ClaimPayload.parse_obj(
         {
-            "service date": "3/28/2018 0:00",
+            "service date": "3/28/18 0:00",
             "submitted procedure": "D0180",
             "Plan/Group #": "GRP-1000",
             "Subscriber#": 3730189502,
@@ -44,7 +44,7 @@ def test_claim_payload_column_parse():
 
     claim_payload = ClaimPayload.parse_obj(
         {
-            "service date": "3/28/2018 0:00",
+            "service date": "3/28/18 0:00",
             "submitted procedure": "D0180",
             "Plan/Group #": "GRP-1000",
             "Subscriber#": 3730189502,
@@ -74,7 +74,7 @@ def test_claim_payload_procedure_validation():
     with pytest.raises(ValueError) as exc_info:
         claim_payload = ClaimPayload.parse_obj(
             {
-                "service date": "3/28/2018 0:00",
+                "service date": "3/28/18 0:00",
                 "submitted procedure": "0180",
                 "Plan/Group #": "GRP-1000",
                 "Subscriber#": 3730189502,
@@ -91,7 +91,7 @@ def test_claim_payload_provider_npi_validation():
     with pytest.raises(ValueError) as exc_info:
         claim_payload = ClaimPayload.parse_obj(
             {
-                "service date": "3/28/2018 0:00",
+                "service date": "3/28/18 0:00",
                 "submitted procedure": "D0180",
                 "Plan/Group #": "GRP-1000",
                 "Subscriber#": 3730189502,

@@ -20,6 +20,23 @@ def create_claim(
     net_fees: float,
     db: Session,
 ):
+    """Inserts a row to claims db
+
+    Args:
+        claim_id (str)
+        service_date (datetime)
+        submitted_procedure (str)
+        plan_group_number (str)
+        subscriber_number (str) 
+        provider_npi (int): 
+        currency (str)
+        provider_fees (float)
+        allowed_fees (float)
+        member_coinsurance (float)
+        member_copay (float)
+        net_fees (float)
+        db (Session)
+    """
     db.add(
         models.Claim(
             id=claim_id,
@@ -41,6 +58,13 @@ def create_claim(
 def increment_net_fee_for_provider(
     provider_npi: int, net_fees_for_claim: float, db: Session
 ):
+    """Increments net fees if provider is present else created entry for provider
+
+    Args:
+        provider_npi (int)
+        net_fees_for_claim (float)
+        db (Session)
+    """
     net_fees = (
         db.query(models.AgregateProviderFees)
         .where(models.AgregateProviderFees.provider_npi == provider_npi)

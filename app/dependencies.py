@@ -4,6 +4,19 @@ from sqlalchemy.orm import Session
 
 
 def db_session_handler(function: str, arguments: dict, db: Session):
+    """Used to rollback d operations if an exception occurs
+
+    Args:
+        function (str): function to be called
+        arguments (dict): arguments to the function
+        db (Session): database session
+
+    Raises:
+        e: raises exception caught
+
+    Returns:
+        Any: returns data returned by function
+    """
     try:
         db.begin()
         data = function(**arguments)
