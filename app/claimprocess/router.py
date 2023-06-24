@@ -28,7 +28,7 @@ def process_claim(claim_payload: ClaimPayload, db: Session = Depends(get_db)):
         HTTPException: Thrown when an unforeseen error occurs
 
     Returns:
-        _type_: _description_
+        StandardResponse
     """
     try:
         claim_details = db_session_handler(
