@@ -61,7 +61,14 @@ REDIS_HOST=
 REDIS_PORT=
 ```
 
+Make sure you have an instance of redis and postgress running for the integration tests
+
+```
+docker run -p 5432:5432 --env-file=.env -d postgres
+docker run -p 6379:6379 --env-file=.env -d redis
+```
+
 Run the following command to run the tests
 ```
-python -m pytest
+python -m coverage run -m pytest
 ```
