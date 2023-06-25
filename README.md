@@ -61,7 +61,13 @@ REDIS_HOST=
 REDIS_PORT=
 ```
 
+Make sure you have an instance of redis and postgress running for the integration tests
+
+```
+
+```
+
 Run the following command to run the tests
 ```
-python -m pytest
+python -m coverage run -m pytest
 ```
